@@ -1,0 +1,1 @@
+AS^A(S^2(add, 1, S^2(mult, 2, 3))) · AS^B(S^2(mult, S^2(add, 1, 2), 3)) · AS^C(S^2(sub, S^2(sub, 10, 3), 2)) · IF(S^2(or, S^1(neg, S^2(eq, A⇒, 7)), S^2(and, S^2(gr, B⇒, 8), S^2(eq, C⇒, 5))), AS^D(1), AS^D(0))
