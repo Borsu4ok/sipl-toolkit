@@ -1,0 +1,20 @@
+{
+  "comments": {
+    "lineComment": "//"
+  },
+  "brackets": [
+    ["begin", "end"],
+    ["(", ")"]
+  ],
+  "autoClosingPairs": [
+    { "open": "(", "close": ")" }
+  ],
+  "surroundingPairs": [
+    ["(", ")"]
+  ],
+  "indentationRules": {
+    "increaseIndentPattern": "^\\s*(begin|while\\b.*\\bdo|if\\b.*\\bthen|else)\\s*$",
+    "decreaseIndentPattern": "^\\s*(end|else)\\b"
+  },
+  "wordPattern": "-?\\d+|[A-Za-z_][A-Za-z0-9_]*|:="
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "SIPL",
+  "scopeName": "source.sipl",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#keywords" },
+    { "include": "#constants" },
+    { "include": "#operators" },
+    { "include": "#numbers" },
+    { "include": "#variables" }
+  ],
+  "repository": {
+    "comments": {
+      "name": "comment.line.double-slash.sipl",
+      "match": "//.*$"
+    },
+    "keywords": {
+      "patterns": [
+        { "name": "keyword.control.block.sipl", "match": "\\b(begin|end)\\b" },
+        { "name": "keyword.control.conditional.sipl", "match": "\\b(if|then|else)\\b" },
+        { "name": "keyword.control.loop.sipl", "match": "\\b(while|do)\\b" },
+        { "name": "keyword.other.skip.sipl", "match": "\\bskip\\b" },
+        { "name": "keyword.operator.logical.sipl", "match": "\\b(or|and|not)\\b|[∨∧¬]" },
+        { "name": "keyword.operator.arithmetic.word.sipl", "match": "\\b(div|mod)\\b" }
+      ]
+    },
+    "constants": {
+      "name": "constant.language.boolean.sipl",
+      "match": "\\b(true|false)\\b"
+    },
+    "operators": {
+      "patterns": [
+        { "name": "keyword.operator.assignment.sipl", "match": ":=" },
+        { "name": "keyword.operator.comparison.sipl", "match": ">=|<=|!=|[=<>≥≤≠]" },
+        { "name": "keyword.operator.arithmetic.sipl", "match": "[+\\-*×–−∗]" },
+        { "name": "punctuation.terminator.statement.sipl", "match": ";" },
+        { "name": "punctuation.section.parens.sipl", "match": "[()]" }
+      ]
+    },
+    "numbers": {
+      "name": "constant.numeric.integer.sipl",
+      "match": "\\b\\d+\\b"
+    },
+    "variables": {
+      "name": "variable.other.sipl",
+      "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\b"
+    }
+  }
+}

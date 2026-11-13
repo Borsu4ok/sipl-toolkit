@@ -1,0 +1,27 @@
+{
+  "Program": {
+    "prefix": "program",
+    "body": ["begin", "\t$0", "end"],
+    "description": "SIPL program skeleton"
+  },
+  "While loop": {
+    "prefix": "while",
+    "body": ["while ${1:X > 0} do", "begin", "\t$0", "end"],
+    "description": "while b do begin S end"
+  },
+  "If statement": {
+    "prefix": "if",
+    "body": ["if ${1:X > 0} then", "\t${2:skip}", "else", "\t${3:skip}"],
+    "description": "if b then S1 else S2"
+  },
+  "Block": {
+    "prefix": "begin",
+    "body": ["begin", "\t$0", "end"],
+    "description": "begin S end"
+  },
+  "Assignment": {
+    "prefix": "assign",
+    "body": ["${1:X} := ${2:0}"],
+    "description": "x := a"
+  }
+}

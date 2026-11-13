@@ -1,0 +1,40 @@
+{
+  "name": "sipl-language",
+  "displayName": "SIPL Language",
+  "description": "Syntax highlighting, snippets and editing support for the SIPL teaching language",
+  "version": "0.5.0",
+  "publisher": "sipl-student",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Borsu4ok/sipl-toolkit"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": ["Programming Languages", "Snippets"],
+  "keywords": ["sipl", "theory of programming", "education"],
+  "contributes": {
+    "languages": [
+      {
+        "id": "sipl",
+        "aliases": ["SIPL", "sipl"],
+        "extensions": [".sipl"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "sipl",
+        "scopeName": "source.sipl",
+        "path": "./syntaxes/sipl.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "sipl",
+        "path": "./snippets/sipl.json"
+      }
+    ]
+  }
+}
