@@ -1,0 +1,44 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*.*.*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Check that tag matches package version
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          VERSION=$(python -c "import tomllib;print(tomllib.load(open('pyproject.toml','rb'))['project']['version'])")
+          test "$TAG" = "$VERSION" || { echo "tag $TAG != version $VERSION"; exit 1; }
+      - name: Test
+        run: |
+          sudo apt-get update && sudo apt-get install -y graphviz
+          pip install -e ".[dev]"
+          pytest
+      - name: Build Python package
+        run: pip install build && python -m build
+      - name: Build VS Code extension
+        working-directory: vscode-sipl
+        run: npx --yes @vscode/vsce package --out ../dist/sipl-${GITHUB_REF_NAME}.vsix
+      - name: Extract release notes
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          awk -v v="$VERSION" '$0 ~ "^## \\[" v "\\]" {flag=1; next} /^## \[/ {flag=0} flag' CHANGELOG.md > notes.md
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: notes.md
+          files: dist/*
