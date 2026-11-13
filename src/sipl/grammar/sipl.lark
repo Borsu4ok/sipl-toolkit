@@ -1,0 +1,74 @@
+start: program
+
+program: BEGIN seq END
+
+seq: seq SEMI stmt
+   | stmt
+
+stmt: assign
+    | if_stmt
+    | while_stmt
+    | block
+    | skip_stmt
+
+assign: var ASSIGN aexpr
+if_stmt: IF bexpr THEN stmt ELSE stmt
+while_stmt: WHILE bexpr DO stmt
+block: BEGIN seq END
+skip_stmt: SKIP
+
+aexpr: aexpr ADDOP term
+     | term
+
+term: term MULOP factor
+    | factor
+
+factor: num
+      | var
+      | LPAR aexpr RPAR
+
+bexpr: bexpr OR bterm
+     | bterm
+
+bterm: bterm AND bfactor
+     | bfactor
+
+bfactor: NOT bfactor
+       | aexpr RELOP aexpr
+       | LPAR bexpr RPAR
+       | TRUE
+       | FALSE
+
+var: NAME
+num: INT
+
+BEGIN: /begin\b/
+END: /end\b/
+IF: /if\b/
+THEN: /then\b/
+ELSE: /else\b/
+WHILE: /while\b/
+DO: /do\b/
+SKIP: /skip\b/
+TRUE: /true\b/
+FALSE: /false\b/
+OR: /or\b/ | "∨"
+AND: /and\b/ | "∧"
+NOT: /not\b/ | "¬"
+
+ASSIGN: ":="
+SEMI: ";"
+LPAR: "("
+RPAR: ")"
+ADDOP: "+" | "-" | "–" | "−"
+MULOP: "*" | "×" | "∗" | /div\b/ | /mod\b/
+RELOP: ">=" | "<=" | "!=" | "≥" | "≤" | "≠" | "=" | ">" | "<"
+
+NAME: /(?!(?:begin|end|if|then|else|while|do|skip|true|false|or|and|not|div|mod)\b)[A-Za-z_][A-Za-z0-9_]*/
+INT: /-?[0-9]+/
+
+COMMENT: /\/\/[^\n]*/
+
+%import common.WS
+%ignore WS
+%ignore COMMENT

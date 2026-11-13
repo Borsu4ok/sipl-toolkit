@@ -1,0 +1,4 @@
+begin
+  X := 0;
+  while X = X do X := X + 1
+end

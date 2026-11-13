@@ -1,0 +1,12 @@
+// Варіант 19: S = 1 + 3 + 9 + ... + 3^N
+begin
+  S := 1;
+  P := 1;
+  I := 0;
+  while N > I do
+  begin
+    P := P * 3;
+    S := S + P;
+    I := I + 1
+  end
+end

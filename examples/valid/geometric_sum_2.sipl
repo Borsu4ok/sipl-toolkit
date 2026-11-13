@@ -1,0 +1,10 @@
+begin
+  S := 1;
+  P := 1;
+  while N > 0 do
+  begin
+    P := P * 2;
+    S := S + P;
+    N := N - 1
+  end
+end

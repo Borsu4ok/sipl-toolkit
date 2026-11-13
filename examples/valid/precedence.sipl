@@ -1,0 +1,6 @@
+begin
+  A := 1 + 2 * 3;
+  B := (1 + 2) * 3;
+  C := 10 - 3 - 2;
+  if not (A = 7) or B > 8 and C = 5 then D := 1 else D := 0
+end

@@ -1,0 +1,7 @@
+begin
+  skip;
+  begin
+    X := (1 + 2) * 3;
+    begin Y := X - -1 end
+  end
+end
